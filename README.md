@@ -14,6 +14,8 @@ controllers.
 - **On-screen display:** markers stay in the world and the rest goes on a floating panel. The game's own crosshair is
   hidden so it doesn't stick to your face.
 
+> **[⬇ Download WDVR 0.16.14](download/WDVR-0.16.14.zip)**
+>
 > Status: playable (version 0.16.14, a full mission played start to finish). Tested only on an **HTC Vive with Vive
 > wands**. Other headsets may work through SteamVR. Other controllers will need button mapping changes.
 
@@ -27,7 +29,7 @@ controllers.
 
 ## Install
 
-1. Download `WDVR-<version>.zip` from the [Releases](../../releases) page.
+1. Download **[WDVR-0.16.14.zip](download/WDVR-0.16.14.zip)** (on that page, click the download button at the top right of the file view).
 2. Open your Watch Dogs folder (the one that contains `bin\Watch_Dogs.exe`). For example
    `C:\Program Files (x86)\Ubisoft\Ubisoft Game Launcher\games\Watch_Dogs` or `E:\Watch_Dogs`.
 3. Extract the zip **into that folder**, so these files end up here:
