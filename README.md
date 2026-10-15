@@ -125,9 +125,12 @@ head steers where Aiden faces and walks.
 
 ## Building from source
 
-The mod is plain C/C++ (Direct3D 11, OpenVR, MinHook, Dear ImGui) built with the
-[llvm-mingw](https://github.com/mstorsjo/llvm-mingw) cross-compiler. It has been built on Linux. On Windows, WSL
-should work the same way.
+*Players can skip this section. The download above is ready to use on Windows. This part is only for people who
+want to change the code.*
+
+The mod is plain C/C++ (Direct3D 11, OpenVR, MinHook, Dear ImGui). It's compiled into the Windows file `WDVR.asi`
+with the [llvm-mingw](https://github.com/mstorsjo/llvm-mingw) compiler. The released versions were compiled on a
+Linux machine, and you can do the same on Windows using WSL.
 
 ```sh
 # get llvm-mingw (the "ucrt" x86_64 build for your system) and unpack it to tools/llvm-mingw
