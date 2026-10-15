@@ -14,10 +14,12 @@ controllers.
 - **On-screen display:** markers stay in the world and the rest goes on a floating panel. The game's own crosshair is
   hidden so it doesn't stick to your face.
 
-> **[⬇ Download WDVR 0.16.14](download/WDVR-0.16.14.zip)**
+> **[⬇ Download the latest version](https://github.com/Somney/WDVR/releases/latest)** (the `WDVR-….zip` file under
+> "Assets")
 >
-> Status: playable (version 0.16.14, a full mission played start to finish). Tested only on an **HTC Vive with Vive
-> wands**. Other headsets may work through SteamVR. Other controllers will need button mapping changes.
+> Status: playable. Version 0.16.14 was played through a full mission. Tested only on an **HTC Vive with Vive
+> wands**. Other headsets may work through SteamVR, but other controllers would need their buttons mapped first
+> (see [Known issues](#known-issues)).
 
 ## Requirements
 
@@ -29,7 +31,8 @@ controllers.
 
 ## Install
 
-1. Download **[WDVR-0.16.14.zip](download/WDVR-0.16.14.zip)** (on that page, click the download button at the top right of the file view).
+1. Download the zip from the **[latest release](https://github.com/Somney/WDVR/releases/latest)**. Click
+   `WDVR-<version>.zip` under "Assets", not the "Source code" files.
 2. Open your Watch Dogs folder (the one that contains `bin\Watch_Dogs.exe`). For example
    `C:\Program Files (x86)\Ubisoft\Ubisoft Game Launcher\games\Watch_Dogs` or `E:\Watch_Dogs`.
 3. Extract the zip **into that folder**, so these files end up here:
@@ -38,8 +41,9 @@ controllers.
    Watch_Dogs\bin\plugins\WDVR.asi         (the mod)
    Watch_Dogs\bin\plugins\openvr_api.dll   (SteamVR library)
    ```
-   If Windows asks, replace files. If you already use another `dinput8.dll` mod loader, keep yours. Most of them load
-   `.asi` files from `bin\plugins` too.
+   The zip also has a `README.txt` and a `licenses` folder, which end up in the game folder. They're harmless.
+   If you already have a `dinput8.dll` from another mod (an ASI loader), you can keep yours: just make sure it loads
+   `.asi` files from `bin\plugins`.
 4. Start SteamVR, then start the game.
 
 **Uninstall:** delete `bin\plugins\WDVR.asi`, plus `bin\dinput8.dll` if nothing else uses it.
@@ -50,13 +54,15 @@ controllers.
 ## First run
 
 1. Load your save. A small green "WDVR ... INSERT = menu" line in the corner of the screen means the mod is running.
-2. Press **INSERT** on the keyboard to open the menu, then tick **"VR on (game in the headset)"**.
+2. Press **INSERT** on the keyboard to open the menu, then tick **"VR on (game in the headset)"**. Do this each
+   time you start the game. Press INSERT again to close the menu.
 3. Put the headset on, look straight ahead and press **numpad 5** to recenter.
 4. **Calibrate the arms once:** press **Ctrl+F11**, stand up straight and hold both wands straight out to the sides
    in a T-pose until the countdown finishes. The result is saved.
 5. Walk around for a few seconds on flat ground. The mod learns the game's depth by itself (for the red dot) and
    saves it.
-6. Get into a car. The mod switches the car to the game's first-person view by pressing D-pad left for you.
+6. Get into a car. The mod switches the car to the game's first-person view by pressing D-pad left for you. If you
+   switch away from it yourself, it leaves that car alone.
 
 Everything you change is saved to `bin\plugins\WDVR.ini`. A log of what the mod saw is written to
 `bin\plugins\wdvr.log` each time the game starts. It's useful if something goes wrong.
@@ -101,13 +107,27 @@ head steers where Aiden faces and walks.
 - **Arms floating or stretched:** redo the T-pose (Ctrl+F11).
 - **Aim feels too high or low:** INSERT menu → "Gun grip angle" (default 40°).
 - **The game's crosshair peeks out:** INSERT menu → "Crosshair box size".
-- **Something else:** the INSERT menu has a "Copy report" button, and `bin\plugins\wdvr.log` has the details. Attach
-  both to an issue.
+- **Something else:** open an [issue](https://github.com/Somney/WDVR/issues). Include the text from the INSERT
+  menu's "Copy report" button (it copies a status summary to the clipboard) and attach `bin\plugins\wdvr.log`.
+
+## Known issues
+
+- **Controllers:** only Vive wands are mapped. Index, Oculus Touch and other controllers would need their buttons
+  added to `src/input.cpp`.
+- **Weapon switching:** after switching weapons, the game sometimes takes over the camera zoom for a few seconds. Aim
+  can be off during that time. It recovers by itself.
+- **Phone:** the frame rate drops slightly while the phone is open, because some frames go to drawing the phone
+  screen.
+- **Hands in pockets:** Aiden's idle "hands in pockets" animation can still flicker now and then, and the arms can
+  float or stretch at times.
+- **3D judder:** the headset shows each eye's picture from a slightly different moment, so very fast motion can judder
+  a little. "3D while driving" in the menu can be turned off for a flat but smoother car view.
 
 ## Building from source
 
 The mod is plain C/C++ (Direct3D 11, OpenVR, MinHook, Dear ImGui) built with the
-[llvm-mingw](https://github.com/mstorsjo/llvm-mingw) cross-compiler. It builds on Linux, or on Windows with MSYS2.
+[llvm-mingw](https://github.com/mstorsjo/llvm-mingw) cross-compiler. It has been built on Linux. On Windows, WSL
+should work the same way.
 
 ```sh
 # get llvm-mingw (the "ucrt" x86_64 build for your system) and unpack it to tools/llvm-mingw
@@ -132,7 +152,7 @@ Source layout:
 - [Dear ImGui](https://github.com/ocornut/imgui) (MIT), [MinHook](https://github.com/TsudaKageyu/minhook) (BSD-2-Clause),
   [OpenVR](https://github.com/ValveSoftware/openvr) (BSD-3-Clause),
   [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader) (MIT, shipped in the release zip).
-  Their licence texts are in `deps/` and in the release zip's `licenses` folder.
+  Their licence texts are in `deps/` (the libraries) and in the release zip's `licenses` folder.
 
 Watch Dogs is a trademark of Ubisoft. This is an unofficial fan mod, not affiliated with or endorsed by Ubisoft or
 Valve. You need your own copy of the game.
